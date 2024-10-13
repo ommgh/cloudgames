@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Account, ID, Models } from "appwrite";
+import { ID, Models } from "appwrite";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
