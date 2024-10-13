@@ -11,7 +11,9 @@ import { Label } from "@/components/ui/label";
 // Assuming you have a separate file for Appwrite configuration
 import { account } from "@/lib/appwrite";
 
-interface User extends Models.User<Models.Preferences> {}
+interface User extends Models.User<Models.Preferences> {
+  name: string;
+}
 
 const LoginPage: React.FC = () => {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
