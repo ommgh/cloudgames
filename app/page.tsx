@@ -10,7 +10,7 @@ import {
   Twitter,
 } from "lucide-react";
 
-export default function Component() {
+export default function Landing() {
   return (
     <div className="min-h-screen bg-[#19191D] text-[#EDEDF0]">
       {/* Navbar */}
