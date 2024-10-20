@@ -101,7 +101,7 @@ export default function Landing() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm mb-4 md:mb-0">
-              &copy; 2024 BaaS Games. All rights reserved.
+              &copy; 2024 CloudGames. All rights reserved.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-[#EDEDF0] hover:text-[#FD366E]">
