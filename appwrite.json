@@ -1,0 +1,274 @@
+{
+  "projectId": "cgame-69",
+  "projectName": "cloudgames",
+  "settings": {
+    "services": {
+      "account": true,
+      "avatars": true,
+      "databases": true,
+      "locale": true,
+      "health": true,
+      "storage": true,
+      "teams": true,
+      "users": true,
+      "functions": true,
+      "graphql": true,
+      "messaging": true
+    },
+    "auth": {
+      "methods": {
+        "jwt": true,
+        "phone": true,
+        "invites": true,
+        "anonymous": true,
+        "email-otp": true,
+        "magic-url": true,
+        "email-password": true
+      },
+      "security": {
+        "duration": 31536000,
+        "limit": 0,
+        "sessionsLimit": 10,
+        "passwordHistory": 0,
+        "passwordDictionary": false,
+        "personalDataCheck": false,
+        "sessionAlerts": false,
+        "mockNumbers": []
+      }
+    }
+  },
+  "databases": [
+    {
+      "$id": "db-finance-69",
+      "name": "finance",
+      "enabled": true
+    }
+  ],
+  "collections": [
+    {
+      "$id": "finance-wallet",
+      "$permissions": [
+        "create(\"any\")",
+        "read(\"any\")",
+        "update(\"any\")",
+        "delete(\"any\")"
+      ],
+      "databaseId": "db-finance-69",
+      "name": "wallets",
+      "enabled": true,
+      "documentSecurity": false,
+      "attributes": [
+        {
+          "key": "userId",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "size": 255,
+          "default": null
+        },
+        {
+          "key": "balance",
+          "type": "double",
+          "required": true,
+          "array": false,
+          "min": -1.7976931348623157e308,
+          "max": 1.7976931348623157e308,
+          "default": null
+        },
+        {
+          "key": "lastUpdated",
+          "type": "datetime",
+          "required": true,
+          "array": false,
+          "format": "",
+          "default": null
+        },
+        {
+          "key": "isLocked",
+          "type": "boolean",
+          "required": true,
+          "array": false,
+          "default": null
+        }
+      ],
+      "indexes": [
+        {
+          "key": "user_wallet_index",
+          "type": "key",
+          "status": "available",
+          "attributes": ["userId"],
+          "orders": ["ASC"]
+        }
+      ]
+    },
+    {
+      "$id": "transactions",
+      "$permissions": [
+        "create(\"any\")",
+        "read(\"any\")",
+        "update(\"any\")",
+        "delete(\"any\")"
+      ],
+      "databaseId": "db-finance-69",
+      "name": "Wallet Transactions Collection",
+      "enabled": true,
+      "documentSecurity": false,
+      "attributes": [
+        {
+          "key": "userId",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "size": 255,
+          "default": null
+        },
+        {
+          "key": "amount",
+          "type": "double",
+          "required": true,
+          "array": false,
+          "min": -1.7976931348623157e308,
+          "max": 1.7976931348623157e308,
+          "default": null
+        },
+        {
+          "key": "type",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "size": 20,
+          "default": null
+        },
+        {
+          "key": "description",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "size": 1000,
+          "default": null
+        },
+        {
+          "key": "timestamp",
+          "type": "datetime",
+          "required": true,
+          "array": false,
+          "format": "",
+          "default": null
+        },
+        {
+          "key": "gameId",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "size": 255,
+          "default": null
+        },
+        {
+          "key": "status",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "size": 20,
+          "default": null
+        },
+        {
+          "key": "metadata",
+          "type": "string",
+          "required": false,
+          "array": false,
+          "size": 10000,
+          "default": null
+        },
+        {
+          "key": "transactionHash",
+          "type": "string",
+          "required": false,
+          "array": false,
+          "size": 255,
+          "default": null
+        }
+      ],
+      "indexes": [
+        {
+          "key": "user_transactions_index",
+          "type": "key",
+          "status": "available",
+          "attributes": ["userId", "timestamp"],
+          "orders": ["ASC", "ASC"]
+        },
+        {
+          "key": "game_transactions_index",
+          "type": "key",
+          "status": "available",
+          "attributes": ["gameId", "timestamp"],
+          "orders": ["ASC", "ASC"]
+        },
+        {
+          "key": "status_index",
+          "type": "key",
+          "status": "available",
+          "attributes": ["status"],
+          "orders": ["ASC"]
+        }
+      ]
+    },
+    {
+      "$id": "transaction_limits",
+      "$permissions": [
+        "create(\"any\")",
+        "read(\"any\")",
+        "update(\"any\")",
+        "delete(\"any\")"
+      ],
+      "databaseId": "db-finance-69",
+      "name": "Transaction Limits Collection",
+      "enabled": true,
+      "documentSecurity": false,
+      "attributes": [
+        {
+          "key": "userId",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "size": 255,
+          "default": null
+        },
+        {
+          "key": "dailyLimit",
+          "type": "double",
+          "required": true,
+          "array": false,
+          "min": -1.7976931348623157e308,
+          "max": 1.7976931348623157e308,
+          "default": null
+        },
+        {
+          "key": "dailyUsed",
+          "type": "double",
+          "required": true,
+          "array": false,
+          "min": -1.7976931348623157e308,
+          "max": 1.7976931348623157e308,
+          "default": null
+        },
+        {
+          "key": "lastReset",
+          "type": "datetime",
+          "required": true,
+          "array": false,
+          "format": "",
+          "default": null
+        }
+      ],
+      "indexes": [
+        {
+          "key": "user_limits_index",
+          "type": "key",
+          "status": "available",
+          "attributes": ["userId"],
+          "orders": ["ASC"]
+        }
+      ]
+    }
+  ]
+}
